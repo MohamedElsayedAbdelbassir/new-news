@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:new_news/api/api.dart';
+import 'package:new_news/modoules/source_response.dart';
+import 'package:new_news/mywidgets/tapItem.dart';
+import 'package:new_news/mywidgets/tap_container.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+  HomeScreen({super.key});
+  List<Sources> sourcesList = [
+    Sources(name: "BBC NEWS"),
+    Sources(name: "BBC NEWS"),
+    Sources(name: "BBC NEWS"),
+    Sources(name: "BBC NEWS"),
+    Sources(name: "BBC NEWS"),
+    Sources(name: "BBC NEWS"),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,25 +30,33 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: 3,
-              separatorBuilder: (BuildContext context, int index) => SizedBox(
-                width: 20,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return MaterialButton(
-                  color: Colors.white,
-                  onPressed: () {},
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+      body: FutureBuilder(
+          future: Api.getSources(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Wrong');
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      color: Color(0xff1877f2),
+                    ),
+                    Text(
+                      'Loading',
+                      style: TextStyle(fontSize: 25, color: Color(0xff1877f2)),
+                    )
+                  ],
+                ),
+              );
+            }
+            var listsource = snapshot.data?.sources ?? [];
+            return TapContainer(
+              sourcesList: listsource,
+            );
+          }),
     );
   }
 }
