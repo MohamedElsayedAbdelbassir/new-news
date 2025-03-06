@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_news/api/api.dart';
 import 'package:new_news/modoules/home_screen/home_screen.dart';
-import 'package:new_news/modoules/source_response.dart';
+import 'package:new_news/models/source_response.dart';
 
 void main() async {
   // Api api = Api();

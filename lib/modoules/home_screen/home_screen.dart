@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:new_news/api/api.dart';
-import 'package:new_news/modoules/source_response.dart';
+import 'package:new_news/models/source_response.dart';
 import 'package:new_news/mywidgets/tapItem.dart';
 import 'package:new_news/mywidgets/tap_container.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  List<Sources> sourcesList = [
-    Sources(name: "BBC NEWS"),
-    Sources(name: "BBC NEWS"),
-    Sources(name: "BBC NEWS"),
-    Sources(name: "BBC NEWS"),
-    Sources(name: "BBC NEWS"),
-    Sources(name: "BBC NEWS"),
-  ];
+  List<Sources> sourcesList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

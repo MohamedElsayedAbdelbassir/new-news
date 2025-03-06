@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_news/modoules/source_response.dart';
+import 'package:new_news/models/source_response.dart';
 import 'package:new_news/mywidgets/tapItem.dart';
 
 class TapContainer extends StatefulWidget {
